@@ -1,0 +1,83 @@
+class direction:
+    def __init__(self):
+        self.left=(1,9,17,25,33,41,49,57)
+        self.right=(8,16, 24, 32, 40, 48, 56, 64)
+    def front_check(self,start):
+    	if start not in range(54,65) and (start+8) not in range(54,65):
+    		return True
+    	else:
+    		return False    		
+    def back_check(self,start):
+    	if start not in range(1,9) and (start-8) not in range(1,9):
+    		return True
+    	else:
+    		return False
+    def left_check(self,start):
+        if start not in self.left : return True
+        else: return False   
+    def right_check(self,start):
+        if start not in self.right : return True
+        else: return False
+    def calc_front_mov(self,st,dt):
+        km=[]
+        temp = st
+        flag =True
+        print(1)
+        while flag:
+            print(1)
+            if temp >16:
+                temp = temp+16
+            else:
+                temp = 16 - temp
+                print(temp)
+            if temp > st:
+                temp=temp+1
+            else:
+                temp = temp-1
+            km.append(temp)
+            if st == dt:
+                print(temp)
+                return km
+                break
+            elif st > 64 :
+                print(122)
+                break
+            else:
+                flag=False
+    def calc_back_mov(self,st,dt):
+        km=[]
+        temp = st
+        flag =True
+        print(1)
+        while flag:
+            print(1)
+            if temp >16:
+                temp = temp-16
+            else:
+                temp = 16 - temp
+                print(temp)
+            if temp > st:
+                temp=temp+1
+            else:
+                temp = temp-1
+            km.append(temp)
+            if st == dt:
+                print(temp)
+                return km
+                break
+            elif st > 64 :
+                print(122)
+                break
+            else:
+                flag=False
+if __name__ == '__main__':
+    start = int(input())
+    dest = int(input())
+    objdir=direction()
+    if start < dest:
+        if objdir.front_check(start):
+            print(objdir.calc_front_mov(start,dest))
+        
+    else:
+        if objdir.back_check(start):
+            print(objdir.calc_back_mov(start,dest))
